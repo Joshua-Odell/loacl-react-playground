@@ -16,7 +16,7 @@ function App(){
   
   return(
     <div>
-      <Accordion props={sections} />
+      <Accordion sections={sections} />
     </div>
   )
 }
