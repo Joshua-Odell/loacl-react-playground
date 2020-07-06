@@ -6,11 +6,18 @@ import TheDate from './Time/TheDate';
 import HelloWorld from './Drills/HelloWorld';
 import Bomb from './Drills/Bomb';
 import Roulette from './Drills/RouletteGun';
+import Tabs from './Tabs/Tabs';
+import tabsProp from './Tabs/tabsProp';
+import Accordion from './state-drills/Accordion';
+import sections from './state-drills/sections'
+
 
 function App(){
   
   return(
-    <Roulette />
+    <div>
+      <Accordion props={sections} />
+    </div>
   )
 }
 
