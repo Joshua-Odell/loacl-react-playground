@@ -21,6 +21,14 @@ class DemonymApp extends Component {
 
     componentDidMount() {
         fetch('https://country.register.gov.uk/records.json?page-size=5000')
+         .then (response => {
+            console.log('About to check for errors');
+            if (!response.ok) {
+                console.log('An error did occur, Let\'s throw an error.');
+                throw new Error('Something went wrong');
+            }
+            return response;
+         })
           .then(response => response.json())
           .then(data => {
             const countries = Object.keys(data)
@@ -28,6 +36,11 @@ class DemonymApp extends Component {
             this.setState({
               countries
             });
+          })
+          .catch(err => {
+              this.setState({
+                  error: err.message
+              });
           });
       }
 
@@ -35,10 +48,15 @@ class DemonymApp extends Component {
         const demon = this.state.selected
           ? <Demonym name={this.state.selected['citizen-names']} country={this.state.selected.name}/>
           : <div className="demonym_app__placeholder">Select a country above</div>;
+        
+        const error = this.state.error
+            ? <div className='demonym_app__error'>{this.state.error}</div>
+            : "";
 
         return (
             <div className='demonym_app'>
-                <CountrySelector countries={[{name: "Barbados"}, {name: 'Bahrain'}]}/>
+                <CountrySelector countries={this.state.countries}
+                changeHandler={selected => this.setSelected(selected)}/>
                 <Demonym name='Barbadian' country="Barbados"/>
             </div>
         );
