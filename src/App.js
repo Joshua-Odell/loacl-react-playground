@@ -9,14 +9,15 @@ import Roulette from './Drills/RouletteGun';
 import Tabs from './Tabs/Tabs';
 import tabsProp from './Tabs/tabsProp';
 import Accordion from './state-drills/Accordion';
-import sections from './state-drills/sections'
+import sections from './state-drills/sections';
+import DemonymApp from './Demonym/demonymApp'
 
 
 function App(){
   
   return(
     <div>
-      <Accordion sections={sections} />
+      <DemonymApp />
     </div>
   )
 }
